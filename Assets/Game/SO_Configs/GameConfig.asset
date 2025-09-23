@@ -14,29 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _objectConfigs:
   - _objectType: 0
-    _sprite: {fileID: 6464202269848163722, guid: c7ded1db8d78698478e684fa07a30ff8, type: 3}
+    _sprite: {fileID: 21300000, guid: a130595b7239aaa48a19614ea5ba3aa7, type: 3}
     _prefab: {fileID: 8612921589885266776, guid: 16645efd0ec0de948a07bf1bcf43e9ab, type: 3}
+    _addPoints: 5
   - _objectType: 1
-    _sprite: {fileID: 3151450226130103854, guid: d3ba9cbff49114a41820663b511771c3, type: 3}
+    _sprite: {fileID: 21300000, guid: 16721294efdf63c4e93beeb3e4dfeffb, type: 3}
     _prefab: {fileID: 8786653261777486866, guid: d943fd64945af1747a812b550af383f2, type: 3}
+    _addPoints: 10
   - _objectType: 2
-    _sprite: {fileID: 3218826081406468375, guid: 2985fb02395038747af109cd5d981589, type: 3}
+    _sprite: {fileID: 21300000, guid: 5ef15bdf2c4a84c4a9b67ec8073cba6c, type: 3}
     _prefab: {fileID: 3326348337956907563, guid: ab578338271c81245b91849297876759, type: 3}
+    _addPoints: 15
   - _objectType: 3
-    _sprite: {fileID: 909714322950976459, guid: 7eb1af97bc9104541aba777d89cae72b, type: 3}
+    _sprite: {fileID: 21300000, guid: 003d1bab21760fe449a65e4cff088a1c, type: 3}
     _prefab: {fileID: 1154133714138182890, guid: 08bc1a09f931e7d459f90ece17026e26, type: 3}
+    _addPoints: 20
   - _objectType: 4
-    _sprite: {fileID: 5990233354813462991, guid: cb0f44b76eac6014f9f1e9b27fcc639d, type: 3}
+    _sprite: {fileID: 21300000, guid: 51e23713249cd074b82577345bd838c2, type: 3}
     _prefab: {fileID: 731790877449697571, guid: e44bbde93fcc44143ab19f8f1dda8d8d, type: 3}
+    _addPoints: 25
   - _objectType: 5
-    _sprite: {fileID: 6322470370963158026, guid: edfcb6f824d4b4b4488a2c38e2a0cd5f, type: 3}
+    _sprite: {fileID: 21300000, guid: cc25246e70773cb4c9aaafc3deece96c, type: 3}
     _prefab: {fileID: 3966272250059186348, guid: 550a509583bd3214bb0d9708c48775a6, type: 3}
+    _addPoints: 30
   - _objectType: 6
-    _sprite: {fileID: 9100889267331292018, guid: 140b6814d2e824541a73f275bacc01a6, type: 3}
+    _sprite: {fileID: 21300000, guid: ea324ace21dd41344a5a71b6f0fca86b, type: 3}
     _prefab: {fileID: 895094166705123448, guid: 004df8b329241754a87d5abcb4103d13, type: 3}
+    _addPoints: 35
   - _objectType: 7
-    _sprite: {fileID: -8811503455333467011, guid: 7925811f8983af5418df30f6bd8be083, type: 3}
+    _sprite: {fileID: 21300000, guid: 2abfbcb05cefc1540b1babac7402bc56, type: 3}
     _prefab: {fileID: 1144188508358327793, guid: d4561dff0f4f8ba4ab59556dfd25d7fa, type: 3}
+    _addPoints: 40
   - _objectType: 8
-    _sprite: {fileID: -5522059933844009957, guid: e3d26441c1e89b34298514e715d2abff, type: 3}
+    _sprite: {fileID: 21300000, guid: ad240c526fb551343a1725bf1f23acef, type: 3}
     _prefab: {fileID: 4347994583878733530, guid: ea7d900f66d314941b58307a6c315c80, type: 3}
+    _addPoints: 45
+  - _objectType: 9
+    _sprite: {fileID: 21300000, guid: 5581d9e13acb1d943bafc7a6e196bcbc, type: 3}
+    _prefab: {fileID: 4347994583878733530, guid: b3c7b86c82ca451429a8399dade6580c, type: 3}
+    _addPoints: 50
+  - _objectType: 10
+    _sprite: {fileID: 21300000, guid: 91c61c506e4add24dacd7c31455ba87c, type: 3}
+    _prefab: {fileID: 4347994583878733530, guid: dc3fc4157a01129498a07f1985d9e218, type: 3}
+    _addPoints: 55

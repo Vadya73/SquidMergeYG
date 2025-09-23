@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Game.CodeBase
 {
@@ -31,6 +32,8 @@ namespace Game.CodeBase
                 .OnComplete(() => _inputActive = true);
         }
 
+        public void SetInputActive(bool active) => _inputActive = active;
+
         private void HandleInput()
         {
             if (!_inputActive)
@@ -40,6 +43,9 @@ namespace Game.CodeBase
     
             if (isTouching)
             {
+                if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+                    return;
+                
                 Touch touch = Input.GetTouch(0);
                 if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
                 {
@@ -53,6 +59,9 @@ namespace Game.CodeBase
             }
             else if (Input.GetMouseButton(0))
             {
+                if (EventSystem.current.IsPointerOverGameObject()) 
+                    return;
+                
                 _isDragging = true;
                 MoveObject(Input.mousePosition);
             }

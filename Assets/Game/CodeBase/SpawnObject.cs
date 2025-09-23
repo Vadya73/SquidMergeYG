@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -44,7 +43,7 @@ namespace Game.CodeBase
                     DestroyObject();
                     spawnObject.DestroyObject();
 
-                    _mergeGameSystem.SpawnNextLevelObject(_config.ObjectType, transform.position);
+                    _mergeGameSystem.SpawnNextLevelObject(_config, transform.position);
                 }
             }
         }
