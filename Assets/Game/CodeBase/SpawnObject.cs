@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Game.CodeBase
@@ -6,14 +8,18 @@ namespace Game.CodeBase
     [RequireComponent(typeof(Rigidbody2D))]
     public class SpawnObject : MonoBehaviour
     {
-        [SerializeField] private ObjectConfig _config;
-        [SerializeField] private MergeGameSystem _mergeGameSystem;
-        [SerializeField] private Rigidbody2D _rigidbody2D;
-        [SerializeField] private Collider2D _collider;
+        [SerializeField, ReadOnly] private ObjectConfig _config;
+        [SerializeField] private GameObject _selectObjectBacklight;
+        private MergeGameSystem _mergeGameSystem;
+        private Rigidbody2D _rigidbody2D;
+        private Collider2D _collider;
 
         private bool _isCollided = false;
+        private bool _isSelected = false;
+        public event Action<SpawnObject> OnObjectClicked;
         
         public ObjectConfig Config => _config;
+        public bool IsSelected => _isSelected;
 
         private void Awake()
         {
@@ -22,6 +28,8 @@ namespace Game.CodeBase
 
             if (_collider == null)
                 _collider = GetComponent<Collider2D>();
+            
+            _selectObjectBacklight.SetActive(false);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -48,13 +56,9 @@ namespace Game.CodeBase
             }
         }
 
-        private void SetCollided(bool b) => _isCollided = b;
-
-        public void DestroyObject()
+        private void OnMouseDown()
         {
-            DOTween.Sequence()
-                .Append(transform.DOScale(Vector3.zero, .5f))
-                .OnComplete(() => Destroy(this.gameObject));
+            OnObjectClicked?.Invoke(this);
         }
 
         public void SetConfig(ObjectConfig objectConfig) => _config = objectConfig;
@@ -63,6 +67,7 @@ namespace Game.CodeBase
         {
             _rigidbody2D.simulated = true;
             _collider.enabled = true;
+            
         }
 
         public void DeactivateObject()
@@ -74,6 +79,23 @@ namespace Game.CodeBase
         public void SetMergeSystem(MergeGameSystem mergeGameSystem)
         {
             _mergeGameSystem = mergeGameSystem;
+        }
+        
+        private void SetCollided(bool b) => _isCollided = b;
+
+        public void DestroyObject()
+        {
+            _mergeGameSystem.DeleteSpawnObjectFromList(this);
+
+            DOTween.Sequence()
+                .Append(transform.DOScale(Vector3.zero, .5f))
+                .OnComplete(() => Destroy(this.gameObject));
+        }
+
+        public void SetSelected(bool b)
+        {
+            _isSelected = b;
+            _selectObjectBacklight.SetActive(b);
         }
     }
 }

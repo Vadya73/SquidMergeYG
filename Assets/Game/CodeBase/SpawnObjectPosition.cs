@@ -84,6 +84,7 @@ namespace Game.CodeBase
             _isDragging = false;
             if (_currentObject != null)
             {
+                _mergeGameSystem.AddSpawnObjectToList(_currentObject);
                 _currentObject.ActivateObject();
                 _currentObject.transform.SetParent(_objectsHolder);
                 _currentObject = null;

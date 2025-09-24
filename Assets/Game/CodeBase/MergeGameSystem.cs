@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Game.CodeBase;
 using TMPro;
 using UnityEngine;
@@ -16,17 +17,22 @@ public class MergeGameSystem : MonoBehaviour
 
     private SpawnObject _nextSpawnObject;
     private int _points;
-        
+    private List<SpawnObject> _spawnObjects;
+
     public Transform MinPos => _minPos;
     public Transform MaxPos => _maxPos;
+    public List<SpawnObject> SpawnObjects => _spawnObjects;
 
     private void Start()
     {
+        _spawnObjects = new List<SpawnObject>();
+        
         var instObject = Instantiate(_gameConfig.ObjectConfigs[0].Prefab, _spawnPosition);
         instObject.DeactivateObject();
         instObject.transform.position = _spawnPosition.position;
         instObject.SetMergeSystem(this);
         instObject.SetConfig(_gameConfig.ObjectConfigs[0]);
+        
         _spawnObjectPositionComponent.SetObject(instObject);
 
         _nextSpawnObject = GenerateRandomObject();
@@ -50,6 +56,8 @@ public class MergeGameSystem : MonoBehaviour
         spawnObject.SetConfig(_gameConfig.ObjectConfigs[(int)nextSpawnObject]);
         spawnObject.SetMergeSystem(this);
         spawnObject.ActivateObject();
+        
+        AddSpawnObjectToList(spawnObject);
     }
 
     public void SetActiveGame(bool active)
@@ -86,5 +94,15 @@ public class MergeGameSystem : MonoBehaviour
         var mergeObject = _gameConfig.ObjectConfigs[randomInt].Prefab;
         mergeObject.SetConfig(_gameConfig.ObjectConfigs[randomInt]);
         return mergeObject;
+    }
+
+    public void DeleteSpawnObjectFromList(SpawnObject spawnObject)
+    {
+        _spawnObjects.Remove(spawnObject);
+    }
+
+    public void AddSpawnObjectToList(SpawnObject spawnObject)
+    {
+        _spawnObjects.Add(spawnObject);
     }
 }
