@@ -1794,7 +1794,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -2169,6 +2169,7 @@ MonoBehaviour:
   _defaultHintPosition: {fileID: 1327415807}
   _hiddenHintPosition: {fileID: 2008631332}
   _exitButton: {fileID: 210961957}
+  _endUIObject: {fileID: 1494284994}
   _retryGameButton: {fileID: 1048591930}
   _exitFromEndUIButton: {fileID: 1916363228}
 --- !u!1 &1484598821
@@ -2922,6 +2923,7 @@ MonoBehaviour:
   _maxPos: {fileID: 1191526262}
   _nextObjectSprite: {fileID: 1999597969}
   _pointText: {fileID: 235183418}
+  _levelUI: {fileID: 1438950955}
 --- !u!4 &1835759714
 Transform:
   m_ObjectHideFlags: 0

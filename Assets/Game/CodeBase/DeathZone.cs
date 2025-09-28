@@ -7,7 +7,7 @@ public class DeathZone : MonoBehaviour
     [SerializeField] private MergeGameSystem _mergeGameSystem;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (TryGetComponent(out SpawnObject spawnObject))
+        if (other.TryGetComponent(out SpawnObject spawnObject))
         {
             _mergeGameSystem.SetActiveGame(false);
             _mergeGameSystem.ShowEndLevelScreen();

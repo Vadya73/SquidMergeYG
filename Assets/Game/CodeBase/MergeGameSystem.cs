@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.CodeBase;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ public class MergeGameSystem : MonoBehaviour
     [SerializeField] private Transform _maxPos;
     [SerializeField] private Image _nextObjectSprite;
     [SerializeField] private TMP_Text _pointText;
+    [SerializeField] private LevelUI _levelUI;
 
     private SpawnObject _nextSpawnObject;
     private int _points;
@@ -73,6 +75,7 @@ public class MergeGameSystem : MonoBehaviour
 
     public void ShowEndLevelScreen()
     {
+        _levelUI.EndUIObject.SetActive(true);
         Debug.Log("Show end level screen");
     }
 
@@ -104,5 +107,17 @@ public class MergeGameSystem : MonoBehaviour
     public void AddSpawnObjectToList(SpawnObject spawnObject)
     {
         _spawnObjects.Add(spawnObject);
+    }
+
+    public void ResetGame()
+    {
+        foreach (var spawnObject in _spawnObjects)
+        {
+            Destroy(spawnObject.gameObject);
+        }
+        
+        _spawnObjects.Clear();
+        _points = 0;
+        _pointText.text = _points.ToString();
     }
 }

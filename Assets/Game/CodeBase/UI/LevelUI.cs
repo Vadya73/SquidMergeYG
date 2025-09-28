@@ -19,6 +19,7 @@ namespace UI
         [Header("ExitButton")]
         [SerializeField, ChildGameObjectsOnly] private Button _exitButton;
         [Header("EndUI")]
+        [SerializeField, ChildGameObjectsOnly] private GameObject _endUIObject;
         [SerializeField, ChildGameObjectsOnly] private Button _retryGameButton;
         [SerializeField, ChildGameObjectsOnly] private Button _exitFromEndUIButton;
         
@@ -33,5 +34,6 @@ namespace UI
         public Transform HintObject => _hintObject;
         public Transform DefaultHintPosition => _defaultHintPosition;
         public Transform HiddenHintPosition => _hiddenHintPosition;
+        public GameObject EndUIObject => _endUIObject;
     }
 }

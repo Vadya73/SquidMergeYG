@@ -1,29 +1,37 @@
 using System;
 using DG.Tweening;
+using UnityEditor;
+using VContainer;
 using VContainer.Unity;
 
 namespace UI
 {
     public sealed class LevelUIPresenter : IInitializable, IDisposable
     {
+        private readonly IObjectResolver _objectResolver;
         private readonly LevelUI _levelUI;
         private readonly LoadScreen _loadScreen;
+        private MergeGameSystem _mergeGameSystem;
 
         private bool _hintIsAnimated;
         private bool _hintActive;
 
-        public LevelUIPresenter(LevelUI levelUI, LoadScreen loadScreen)
+        public LevelUIPresenter(IObjectResolver objectResolver,LevelUI levelUI, LoadScreen loadScreen)
         {
+            _objectResolver = objectResolver;
             _levelUI = levelUI;
             _loadScreen = loadScreen;
         }
 
         public void Initialize()
         {
+            _mergeGameSystem = _objectResolver.Resolve<MergeGameSystem>();
+            
             _levelUI.HintButton.onClick.AddListener(ShowPlanetsHint);
             _levelUI.ExitButton.onClick.AddListener(LoadMainMenu);
             _levelUI.ExitFromEndUIButton.onClick.AddListener(LoadMainMenu);
-            
+            _levelUI.RetryGameButton.onClick.AddListener(ResetGame);
+
             _levelUI.HintObject.gameObject.SetActive(false);
         }
 
@@ -32,6 +40,13 @@ namespace UI
             _levelUI.HintButton.onClick.RemoveListener(ShowPlanetsHint);
             _levelUI.ExitButton.onClick.RemoveListener(LoadMainMenu);
             _levelUI.ExitFromEndUIButton.onClick.RemoveListener(LoadMainMenu);
+            _levelUI.RetryGameButton.onClick.RemoveListener(ResetGame);
+        }
+
+        private void ResetGame()
+        {
+            _mergeGameSystem.ResetGame();
+            _levelUI.EndUIObject.SetActive(false);
         }
 
         private void LoadMainMenu()
