@@ -102,6 +102,10 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
     {
         _mergeGameSystem.SetActiveGame(false);
 
+        foreach (var spawnObject in _mergeGameSystem.SpawnObjects)
+            spawnObject.Rb2D.simulated = false;
+        
+        
         List<Vector3> positions = new List<Vector3>();
         foreach (var spawnObject in _mergeGameSystem.SpawnObjects)
             positions.Add(spawnObject.transform.position);
@@ -115,6 +119,9 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
         for (int i = 0; i < _mergeGameSystem.SpawnObjects.Count; i++)
             _mergeGameSystem.SpawnObjects[i].transform.position = positions[i];
 
+        foreach (var spawnObject in _mergeGameSystem.SpawnObjects)
+            spawnObject.Rb2D.simulated = true;
+        
         DOVirtual.DelayedCall(.5f, () => _mergeGameSystem.SetActiveGame(true));
     }
 

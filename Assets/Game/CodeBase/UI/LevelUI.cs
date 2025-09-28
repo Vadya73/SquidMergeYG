@@ -11,8 +11,12 @@ namespace UI
         [SerializeField, ChildGameObjectsOnly] private Button _swapTwoObjectsButton;
         [SerializeField, ChildGameObjectsOnly] private Button _mixAllObjectsButton;
         [SerializeField, ChildGameObjectsOnly] private Button _deleteObjectButton;
-        [Header("Other Buttons")]
+        [Header("Hint")]
         [SerializeField, ChildGameObjectsOnly] private Button _hintButton;
+        [SerializeField] private Transform _hintObject;
+        [SerializeField] private Transform _defaultHintPosition;
+        [SerializeField] private Transform _hiddenHintPosition;
+        [Header("ExitButton")]
         [SerializeField, ChildGameObjectsOnly] private Button _exitButton;
         [Header("EndUI")]
         [SerializeField, ChildGameObjectsOnly] private Button _retryGameButton;
@@ -26,15 +30,8 @@ namespace UI
         public Button ExitButton => _exitButton;
         public Button RetryGameButton => _retryGameButton;
         public Button ExitFromEndUIButton => _exitFromEndUIButton;
-    }
-
-    public class LevelUIPresenter
-    {
-        private readonly LevelUI _levelUI;
-
-        public LevelUIPresenter(LevelUI levelUI)
-        {
-            _levelUI = levelUI;
-        }
+        public Transform HintObject => _hintObject;
+        public Transform DefaultHintPosition => _defaultHintPosition;
+        public Transform HiddenHintPosition => _hiddenHintPosition;
     }
 }

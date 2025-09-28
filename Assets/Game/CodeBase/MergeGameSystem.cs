@@ -71,7 +71,7 @@ public class MergeGameSystem : MonoBehaviour
         _pointText.text = _points.ToString();
     }
 
-    private void ShowEndLevelScreen()
+    public void ShowEndLevelScreen()
     {
         Debug.Log("Show end level screen");
     }

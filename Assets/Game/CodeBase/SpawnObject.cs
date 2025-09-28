@@ -20,6 +20,7 @@ namespace Game.CodeBase
         
         public ObjectConfig Config => _config;
         public bool IsSelected => _isSelected;
+        public Rigidbody2D Rb2D => _rigidbody2D;
 
         private void Awake()
         {
@@ -41,19 +42,30 @@ namespace Game.CodeBase
             {
                 if (_config.ObjectType == spawnObject.Config.ObjectType)
                 {
-                    Debug.Log("Collided");
+                    var newSpawnPos = (spawnObject.transform.position + transform.position) * .5f;
+                    
                     SetCollided(true);
                     spawnObject.SetCollided(true);
                     
                     DeactivateObject();
                     spawnObject.DeactivateObject();
 
-                    DestroyObject();
-                    spawnObject.DestroyObject();
+                    AnimateMoveTo(newSpawnPos);
+                    spawnObject.AnimateMoveTo(newSpawnPos);
+                    DOVirtual.DelayedCall(.25f, () =>
+                    {
+                        DestroyObject();
+                        spawnObject.DestroyObject();
 
-                    _mergeGameSystem.SpawnNextLevelObject(_config, transform.position);
+                        _mergeGameSystem.SpawnNextLevelObject(_config, newSpawnPos);
+                    });
                 }
             }
+        }
+
+        private void AnimateMoveTo(Vector3 newSpawnPos)
+        {
+            transform.DOMove(newSpawnPos, 0.25f);
         }
 
         private void OnMouseDown()

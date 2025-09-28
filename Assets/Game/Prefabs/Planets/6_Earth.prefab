@@ -172,7 +172,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 2
   m_SpriteSortPoint: 0
 --- !u!1 &8769589937322842580
 GameObject:
@@ -290,7 +290,4 @@ MonoBehaviour:
     _sprite: {fileID: 0}
     _prefab: {fileID: 0}
     _addPoints: 0
-  _mergeGameSystem: {fileID: 0}
-  _rigidbody2D: {fileID: 0}
-  _collider: {fileID: 0}
   _selectObjectBacklight: {fileID: 1395674772083034867}

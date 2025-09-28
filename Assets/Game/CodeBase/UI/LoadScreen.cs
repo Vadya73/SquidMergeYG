@@ -1,40 +1,37 @@
-using System;
+using System.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Game.CodeBase.UI
+namespace UI
 {
     public class LoadScreen : MonoBehaviour
     {
         [SerializeField] private CanvasGroup _loadScreenGroup;
-        private static LoadScreen _instance;
-        public static LoadScreen Instance => _instance;
         
-
         private void Awake()
         {
-            if (_instance != null && _instance != this)
-                Destroy(this.gameObject);
-            else
-            {
-                _instance = this;
-                DontDestroyOnLoad(this);
-            }
-            
             gameObject.SetActive(false);
             _loadScreenGroup.alpha = 0f;
         }
 
-        public void Show(Action func)
+        public async void LoadScene(int sceneIndex)
+        {
+            Show();
+            await SceneManager.LoadSceneAsync(sceneIndex);
+            Hide();
+        }
+
+        private void Show()
         {
             gameObject.SetActive(true);
             _loadScreenGroup.alpha = 0f;
-            
-            DOTween.Sequence()
-                .Append(_loadScreenGroup.DOFade(1f, .5f))
-                .AppendCallback(() => func?.Invoke())
-                .AppendInterval(1f)
-                .Append(_loadScreenGroup.DOFade(0f, 5f))
+            _loadScreenGroup.DOFade(1f, .5f);
+        }
+
+        private void Hide()
+        {
+            _loadScreenGroup.DOFade(0f, 0.5f)
                 .OnComplete(() => gameObject.SetActive(false));
         }
     }

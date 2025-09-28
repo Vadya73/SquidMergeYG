@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using UnityEngine;
 using UnityEngine.UI;
 #if TMP_YG2
@@ -27,7 +27,9 @@ namespace YG
         public TextMP textMP;
 #endif
         [Space(10)]
-        public MonoBehaviour[] topPlayerActivityComponents = new MonoBehaviour[0];
+        public MonoBehaviour[] top1PlayerActivityComponents = new MonoBehaviour[0];
+        public MonoBehaviour[] top2PlayerActivityComponents = new MonoBehaviour[0];
+        public MonoBehaviour[] top3PlayerActivityComponents = new MonoBehaviour[0];
         public MonoBehaviour[] currentPlayerActivityComponents = new MonoBehaviour[0];
 
         public class Data
@@ -71,18 +73,37 @@ namespace YG
                 }
             }
 
-            if (topPlayerActivityComponents.Length > 0)
+            if (top1PlayerActivityComponents.Length > 0)
             {
                 if (data.inTop)
                 {
-                    ActivityMomoObjects(topPlayerActivityComponents, true);
+                    ActivityMomoObjects(top1PlayerActivityComponents, true);
                 }
                 else
                 {
-                    ActivityMomoObjects(topPlayerActivityComponents, false);
+                    ActivityMomoObjects(top1PlayerActivityComponents, false);
                 }
             }
 
+            if (data.rank == "2")
+            {
+                ActivityMomoObjects(top2PlayerActivityComponents, true);
+            }
+            else
+            {
+                ActivityMomoObjects(top2PlayerActivityComponents, false);
+            }
+            
+            if (data.rank == "3")
+            {
+                ActivityMomoObjects(top3PlayerActivityComponents, true);
+            }
+            else
+            {
+                ActivityMomoObjects(top3PlayerActivityComponents, false);
+            }
+
+            
             if (currentPlayerActivityComponents.Length > 0)
             {
                 if (data.currentPlayer)

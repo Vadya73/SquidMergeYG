@@ -12,10 +12,18 @@ namespace Infrastructure.DI
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<ProjectInput>(Lifetime.Singleton).AsSelf();
-            builder.RegisterComponentInHierarchy<LevelUI>().AsSelf();
+            
+            RegisterLevelUI(builder);
+            
             builder.RegisterComponentInHierarchy<MergeGameSystem>().AsSelf();
             
             RegisterAbilitySystem(builder);
+        }
+
+        private void RegisterLevelUI(IContainerBuilder builder)
+        {
+            builder.RegisterComponentInHierarchy<LevelUI>().AsSelf();
+            builder.RegisterEntryPoint<LevelUIPresenter>().AsSelf();
         }
 
         private void RegisterAbilitySystem(IContainerBuilder builder)
