@@ -1,4 +1,5 @@
 using Audio;
+using MyInput;
 using UI;
 using UnityEngine;
 using VContainer;
@@ -13,10 +14,13 @@ namespace Infrastructure.DI
         {
             DontDestroyOnLoad(this.gameObject);
             
+            builder.RegisterComponentInHierarchy<MonoHelper>().AsSelf();
             builder.RegisterComponentInHierarchy<LoadScreen>().AsSelf();
             builder.RegisterComponentInHierarchy<AudioManager>().AsSelf();
 
             builder.RegisterInstance(_audioConfig.AudioData).AsSelf();
+            
+            builder.Register<ProjectInput>(Lifetime.Singleton).AsSelf();
         }
     }
 }

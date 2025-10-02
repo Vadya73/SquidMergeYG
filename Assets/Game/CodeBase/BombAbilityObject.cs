@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Audio;
 using MyInput;
 using UnityEngine;
 using VContainer;
@@ -16,11 +17,15 @@ public class BombAbilityObject : MonoBehaviour
     private ProjectInput _input;
 
     private Action _activateGameInput;
+    private AudioManager _audioManager;
+    private AudioData _audioData;
 
     [Inject]
-    private void Construct(ProjectInput projectInput)
+    private void Construct(ProjectInput projectInput, AudioManager audioManager, AudioData audioData)
     {
         _input = projectInput;
+        _audioManager = audioManager;
+        _audioData = audioData;
     }
     
     private void Awake()
@@ -56,6 +61,8 @@ public class BombAbilityObject : MonoBehaviour
 
     private void Explode()
     {
+        _audioManager.PlaySound(_audioData.BombSound);
+        
         foreach (Collider2D collider in _collidedObjects)
         {
             var objRb = collider.attachedRigidbody;

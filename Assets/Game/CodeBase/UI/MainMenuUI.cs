@@ -36,6 +36,9 @@ namespace UI
             _closeRatingButton.onClick.AddListener(CloseRating);
             
             _ratingObject.SetActive(false);
+
+            
+            _soundImage.sprite = _audioData.SoundActive ? _audioData.SoundActiveSprite : _audioData.SoundInactiveSprite;
         }
 
         private void OnDestroy()

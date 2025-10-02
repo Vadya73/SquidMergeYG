@@ -16,3 +16,17 @@ MonoBehaviour:
     _soundActiveSprite: {fileID: 21300000, guid: dd22c8f6d598ef54996c1d74c4baf5b0, type: 3}
     _soundInactiveSprite: {fileID: 21300000, guid: a788a17a3f5d7ac42b66e3212fa8e41f, type: 3}
     _soundActive: 1
+    _clickSound: {fileID: 8300000, guid: c23922d54edbbcf46a1f48d8d4df66f7, type: 3}
+    _inputReleaseSound: {fileID: 8300000, guid: cee309bbd12d34c45b4d627daec81148, type: 3}
+    _buttonClickSound: {fileID: 8300000, guid: dc33656938ebd934b8552f87b5970dcd, type: 3}
+    _objectsMergeSound:
+    - {fileID: 8300000, guid: ce11c63ded673aa40bd4ac8d1d2e6160, type: 3}
+    - {fileID: 8300000, guid: 8afeba4c71fac6b4b94e4fbd99a876ce, type: 3}
+    - {fileID: 8300000, guid: 6526761a8d74bdf41bc60ced9c99657a, type: 3}
+    _objectCollideSound: {fileID: 8300000, guid: 2bfd1afabc2e75e44861dea7ad7a618f, type: 3}
+    _endLevelSound: {fileID: 8300000, guid: 10eede4b9bf89684d9edb5efb38f2a60, type: 3}
+    _bombSound: {fileID: 8300000, guid: b0230b57b77ee6f408c159b3b3a9ac81, type: 3}
+    _swapTwoObjectsSound: {fileID: 8300000, guid: 539de6b863ef07a4f972ab3873ae6cea, type: 3}
+    _mixObjectsSound: {fileID: 8300000, guid: 539de6b863ef07a4f972ab3873ae6cea, type: 3}
+    _deleteObjectSound: {fileID: 8300000, guid: 539de6b863ef07a4f972ab3873ae6cea, type: 3}
+    _selectObjectSound: {fileID: 0}

@@ -45,9 +45,9 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: d5374ecb01af13d47bd7d677dcdf8519, type: 3}
   m_Resource: {fileID: 8300000, guid: d5374ecb01af13d47bd7d677dcdf8519, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -181,6 +181,17 @@ MonoBehaviour:
     _soundActiveSprite: {fileID: 0}
     _soundInactiveSprite: {fileID: 0}
     _soundActive: 0
+    _clickSound: {fileID: 0}
+    _inputReleaseSound: {fileID: 0}
+    _buttonClickSound: {fileID: 0}
+    _objectsMergeSound: []
+    _objectCollideSound: {fileID: 0}
+    _endLevelSound: {fileID: 0}
+    _bombSound: {fileID: 0}
+    _swapTwoObjectsSound: {fileID: 0}
+    _mixObjectsSound: {fileID: 0}
+    _deleteObjectSound: {fileID: 0}
+    _selectObjectSound: {fileID: 0}
 --- !u!1 &9159819860922234972
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +237,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0

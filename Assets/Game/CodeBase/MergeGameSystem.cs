@@ -1,9 +1,14 @@
+using System;
 using System.Collections.Generic;
+using Audio;
 using Game.CodeBase;
 using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
+using VContainer;
+using VContainer.Unity;
+using Random = UnityEngine.Random;
 
 public class MergeGameSystem : MonoBehaviour
 {
@@ -20,44 +25,69 @@ public class MergeGameSystem : MonoBehaviour
     private SpawnObject _nextSpawnObject;
     private int _points;
     private List<SpawnObject> _spawnObjects;
-
+    
+    private LoadScreen _loadScreen;
+    private IObjectResolver _objectResolver;
+    private AudioManager _audioManager;
+    private AudioData _audioData;
+     
+    private Action _onLsShow;
+    private Action _onLsHide;
+    
     public Transform MinPos => _minPos;
     public Transform MaxPos => _maxPos;
     public List<SpawnObject> SpawnObjects => _spawnObjects;
+    
 
+    [Inject]
+    private void Construct(IObjectResolver objectResolver,LoadScreen loadScreen, AudioManager audioManager, AudioData audioData)
+    {
+        _objectResolver = objectResolver;
+        _loadScreen = loadScreen;
+        _audioManager = audioManager;
+        _audioData = audioData;
+    }
+    
     private void Start()
     {
         _spawnObjects = new List<SpawnObject>();
         
-        var instObject = Instantiate(_gameConfig.ObjectConfigs[0].Prefab, _spawnPosition);
+        var instObject = _objectResolver.Instantiate(_gameConfig.ObjectConfigs[0].Prefab, _spawnPosition);
         instObject.DeactivateObject();
         instObject.transform.position = _spawnPosition.position;
-        instObject.SetMergeSystem(this);
         instObject.SetConfig(_gameConfig.ObjectConfigs[0]);
         
         _spawnObjectPositionComponent.SetObject(instObject);
 
         _nextSpawnObject = GenerateRandomObject();
         _nextObjectSprite.sprite = _nextSpawnObject.Config.Sprite;
+        
+        // lol, don't  do this 
+        _onLsShow = () => SetActiveGame(false);
+        _onLsHide = () => SetActiveGame(true);
+        
+        _loadScreen.OnLoadScreenShow += _onLsShow;
+        _loadScreen.OnLoadScreenHide += _onLsHide;
+    }
+
+    private void OnDestroy()
+    {
+        _loadScreen.OnLoadScreenShow -= _onLsShow;
+        _loadScreen.OnLoadScreenHide -= _onLsHide;
     }
 
     public void SpawnNextLevelObject(ObjectConfig objectConfig, Vector3 newPos)
     {
-        if (objectConfig.ObjectType == ObjectType.Sun)
-        {
-            ShowEndLevelScreen();
-            return;
-        }
-
         AddPoints(objectConfig.AddPoints);
 
         ObjectType nextSpawnObject = (ObjectType)((int)objectConfig.ObjectType + 1);
             
-        SpawnObject spawnObject = Instantiate(_gameConfig.ObjectConfigs[(int)nextSpawnObject].Prefab, _objectsHolder);
+        SpawnObject spawnObject = _objectResolver.Instantiate(_gameConfig.ObjectConfigs[(int)nextSpawnObject].Prefab, _objectsHolder);
         spawnObject.transform.position = newPos;
         spawnObject.SetConfig(_gameConfig.ObjectConfigs[(int)nextSpawnObject]);
-        spawnObject.SetMergeSystem(this);
         spawnObject.ActivateObject();
+        
+        _audioManager.PlaySound(_audioData.ObjectsMergeSound[Random.Range(0, _audioData.ObjectsMergeSound.Length)]);
         
         AddSpawnObjectToList(spawnObject);
     }
@@ -76,15 +106,14 @@ public class MergeGameSystem : MonoBehaviour
     public void ShowEndLevelScreen()
     {
         _levelUI.EndUIObject.SetActive(true);
-        Debug.Log("Show end level screen");
+        _audioManager.PlaySound(_audioData.EndLevelSound);
     }
 
     public void SetNextObject()
     {
-        SpawnObject instObject = Instantiate(_nextSpawnObject, _spawnPosition);
+        SpawnObject instObject = _objectResolver.Instantiate(_nextSpawnObject, _spawnPosition);
         instObject.DeactivateObject();
         instObject.transform.position = _spawnPosition.transform.position;
-        instObject.SetMergeSystem(this);
             
         _spawnObjectPositionComponent.SetObject(instObject);
         _nextSpawnObject = GenerateRandomObject();
@@ -112,12 +141,11 @@ public class MergeGameSystem : MonoBehaviour
     public void ResetGame()
     {
         foreach (var spawnObject in _spawnObjects)
-        {
             Destroy(spawnObject.gameObject);
-        }
         
         _spawnObjects.Clear();
         _points = 0;
         _pointText.text = _points.ToString();
+        SetActiveGame(true);
     }
 }

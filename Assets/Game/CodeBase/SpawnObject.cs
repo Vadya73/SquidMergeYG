@@ -1,7 +1,9 @@
 using System;
+using Audio;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using VContainer;
 
 namespace Game.CodeBase
 {
@@ -16,12 +18,23 @@ namespace Game.CodeBase
 
         private bool _isCollided = false;
         private bool _isSelected = false;
+        private AudioManager _audioManager;
+        private AudioData _audioData;
         public event Action<SpawnObject> OnObjectClicked;
         
         public ObjectConfig Config => _config;
         public bool IsSelected => _isSelected;
         public Rigidbody2D Rb2D => _rigidbody2D;
 
+        [Inject]
+        private void Construct(AudioManager audioManager, AudioData audioData, MergeGameSystem mergeGameSystem)
+        {
+            _audioManager = audioManager;
+            _audioData = audioData;
+            _mergeGameSystem = mergeGameSystem;
+            
+        }
+        
         private void Awake()
         {
             if (_rigidbody2D == null)
@@ -37,6 +50,11 @@ namespace Game.CodeBase
         {
             if (_isCollided)
                 return;
+
+            if (!_audioManager.SoundSource.isPlaying)
+            {
+                _audioManager.PlaySound(_audioData.ObjectCollideSound);
+            }
             
             if (other.gameObject.TryGetComponent(out SpawnObject spawnObject))
             {
@@ -79,18 +97,12 @@ namespace Game.CodeBase
         {
             _rigidbody2D.simulated = true;
             _collider.enabled = true;
-            
         }
 
         public void DeactivateObject()
         {
             _rigidbody2D.simulated = false;
             _collider.enabled = false;
-        }
-
-        public void SetMergeSystem(MergeGameSystem mergeGameSystem)
-        {
-            _mergeGameSystem = mergeGameSystem;
         }
         
         private void SetCollided(bool b) => _isCollided = b;
@@ -108,6 +120,7 @@ namespace Game.CodeBase
         {
             _isSelected = b;
             _selectObjectBacklight.SetActive(b);
+            _audioManager.PlaySound(_audioData.SelectObjectSound);
         }
     }
 }

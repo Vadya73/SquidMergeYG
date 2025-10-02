@@ -286,8 +286,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _config:
-    _objectType: 0
-    _sprite: {fileID: 0}
-    _prefab: {fileID: 0}
-    _addPoints: 0
+    _objectType: 2
+    _sprite: {fileID: 21300000, guid: 5ef15bdf2c4a84c4a9b67ec8073cba6c, type: 3}
+    _prefab: {fileID: 3326348337956907563}
+    _addPoints: 15
   _selectObjectBacklight: {fileID: 2905908936663304942}

@@ -8,10 +8,11 @@ namespace Infrastructure.DI
 {
     public class LevelLifetimeScope : LifetimeScope
     {
+        [SerializeField] private AbilityConfig _abilityConfig;
         [SerializeField] private BombAbilityObject _bombAbilityObjectPrefab;
         protected override void Configure(IContainerBuilder builder)
         {
-            builder.Register<ProjectInput>(Lifetime.Singleton).AsSelf();
+            builder.RegisterInstance(_abilityConfig.AbilityData).AsSelf();
             
             RegisterLevelUI(builder);
             
