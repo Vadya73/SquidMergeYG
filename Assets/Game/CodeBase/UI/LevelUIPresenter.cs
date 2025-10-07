@@ -1,6 +1,6 @@
 using System;
 using DG.Tweening;
-using UnityEditor;
+using SaveLoad;
 using VContainer;
 using VContainer.Unity;
 
@@ -11,16 +11,18 @@ namespace UI
         private readonly IObjectResolver _objectResolver;
         private readonly LevelUI _levelUI;
         private readonly LoadScreen _loadScreen;
+        private readonly LevelSaver _levelSaver;
         private MergeGameSystem _mergeGameSystem;
 
         private bool _hintIsAnimated;
         private bool _hintActive;
 
-        public LevelUIPresenter(IObjectResolver objectResolver,LevelUI levelUI, LoadScreen loadScreen)
+        public LevelUIPresenter(IObjectResolver objectResolver,LevelUI levelUI, LoadScreen loadScreen, LevelSaver levelSaver)
         {
             _objectResolver = objectResolver;
             _levelUI = levelUI;
             _loadScreen = loadScreen;
+            _levelSaver = levelSaver;
         }
 
         public void Initialize()
@@ -29,10 +31,14 @@ namespace UI
             
             _levelUI.HintButton.onClick.AddListener(ShowPlanetsHint);
             _levelUI.ExitButton.onClick.AddListener(LoadMainMenu);
-            _levelUI.ExitFromEndUIButton.onClick.AddListener(LoadMainMenu);
+            _levelUI.ExitFromEndUIButton.onClick.AddListener(LoadMainMenuFromEnd);
             _levelUI.RetryGameButton.onClick.AddListener(ResetGame);
 
             _levelUI.HintObject.gameObject.SetActive(false);
+            _levelUI.BombCooldownImage.gameObject.SetActive(false);
+            _levelUI.SwapTwoObjectsCooldownImage.gameObject.SetActive(false);
+            _levelUI.MixAllObjectsCooldownImage.gameObject.SetActive(false);
+            _levelUI.DeleteObjectCooldownImage.gameObject.SetActive(false);
         }
 
         public void Dispose()
@@ -51,6 +57,13 @@ namespace UI
 
         private void LoadMainMenu()
         {
+            _levelSaver.SaveLevel();
+            _loadScreen.LoadScene(1);
+        }
+
+        private void LoadMainMenuFromEnd()
+        {
+            _levelSaver.CleanLevelData();
             _loadScreen.LoadScene(1);
         }
 

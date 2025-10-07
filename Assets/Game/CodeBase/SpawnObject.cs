@@ -122,5 +122,9 @@ namespace Game.CodeBase
             _selectObjectBacklight.SetActive(b);
             _audioManager.PlaySound(_audioData.SelectObjectSound);
         }
+        
+        public void SavePosition() => _config.SavePosition(transform.position);
+
+        public void SetSavedPosition() => transform.position = _config.SavedPosition;
     }
 }

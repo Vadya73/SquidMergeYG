@@ -8,13 +8,13 @@ namespace UI
     {
         [Header("Abilitys")]
         [SerializeField, ChildGameObjectsOnly] private Button _bombButton;
-        [SerializeField, ChildGameObjectsOnly] private Image _bombImage;
+        [SerializeField, ChildGameObjectsOnly] private Image _bombCooldownImage;
         [SerializeField, ChildGameObjectsOnly] private Button _swapTwoObjectsButton;
-        [SerializeField, ChildGameObjectsOnly] private Image _swapTwoObjectsImage;
+        [SerializeField, ChildGameObjectsOnly] private Image _swapTwoObjectsCooldownImage;
         [SerializeField, ChildGameObjectsOnly] private Button _mixAllObjectsButton;
-        [SerializeField, ChildGameObjectsOnly] private Image _mixAllObjectsImage;
+        [SerializeField, ChildGameObjectsOnly] private Image _mixAllObjectsCooldownImage;
         [SerializeField, ChildGameObjectsOnly] private Button _deleteObjectButton;
-        [SerializeField, ChildGameObjectsOnly] private Image _deleteObjectImage;
+        [SerializeField, ChildGameObjectsOnly] private Image _deleteObjectCooldownImage;
         [Header("Hint")]
         [SerializeField, ChildGameObjectsOnly] private Button _hintButton;
         [SerializeField] private Transform _hintObject;
@@ -28,13 +28,13 @@ namespace UI
         [SerializeField, ChildGameObjectsOnly] private Button _exitFromEndUIButton;
         
         public Button BombButton => _bombButton;
-        public Image BombImage => _bombImage;
+        public Image BombCooldownImage => _bombCooldownImage;
         public Button SwapTwoObjectsButton => _swapTwoObjectsButton;
-        public Image SwapTwoObjectsImage => _swapTwoObjectsImage;
+        public Image SwapTwoObjectsCooldownImage => _swapTwoObjectsCooldownImage;
         public Button MixAllObjectsButton => _mixAllObjectsButton;
-        public Image MixAllObjectsImage => _mixAllObjectsImage;
+        public Image MixAllObjectsCooldownImage => _mixAllObjectsCooldownImage;
         public Button DeleteObjectButton => _deleteObjectButton;
-        public Image DeleteObjectImage => _deleteObjectImage;
+        public Image DeleteObjectCooldownImage => _deleteObjectCooldownImage;
         public Button HintButton => _hintButton;
         public Button ExitButton => _exitButton;
         public Button RetryGameButton => _retryGameButton;

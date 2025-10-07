@@ -6,9 +6,7 @@ using Game.CodeBase;
 using Infrastructure;
 using Timer;
 using UI;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
 using YG;
@@ -24,6 +22,7 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
     private readonly AudioData _audioData;
     private readonly MonoHelper _monoHelper;
     private readonly AbilityData _abilityData;
+    private readonly CameraEffectsSystem _cameraEffectsSystem;
 
     private BombAbilityObject _currentBomb;
     private List<SpawnObject> _selectedObjects;
@@ -34,7 +33,8 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
     private CountDownTimer _deleteCooldownTimer;
     
     public AbilitySystem(IObjectResolver objectResolver,BombAbilityObject bombAbilityObjectPrefab, LevelUI levelUI, 
-        MergeGameSystem mergeGameSystem, AudioManager audioManager, AudioData audioData, MonoHelper monoHelper, AbilityData abilityData)
+        MergeGameSystem mergeGameSystem, AudioManager audioManager, AudioData audioData, MonoHelper monoHelper, AbilityData abilityData,
+        CameraEffectsSystem cameraEffectsSystem)
     {
         _objectResolver = objectResolver;
         _bombAbilityObjectPrefab = bombAbilityObjectPrefab;
@@ -44,6 +44,7 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
         _audioData = audioData;
         _monoHelper = monoHelper;
         _abilityData = abilityData;
+        _cameraEffectsSystem = cameraEffectsSystem;
     }
 
     public void Initialize()
@@ -59,18 +60,22 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
         _deleteCooldownTimer = new CountDownTimer(_monoHelper, _abilityData.DeleteCooldown);
 
         _bombCooldownTimer.OnStarted += DisableBombButton;
+        _bombCooldownTimer.OnTimeChanged += UpdateBombTimeView;
         _bombCooldownTimer.OnEnded += ActiveBombButton;
 
         _swapCooldownTimer.OnStarted += DisableSwapButton;
+        _swapCooldownTimer.OnTimeChanged += UpdateSwapTimeView;
         _swapCooldownTimer.OnEnded += ActiveSwapButton;
 
         _mixCooldownTimer.OnStarted += DisableMixButton;
+        _mixCooldownTimer.OnTimeChanged += UpdateMixTimeView;
         _mixCooldownTimer.OnEnded += ActiveMixButton;
 
         _deleteCooldownTimer.OnStarted += DisableDeleteButton;
+        _deleteCooldownTimer.OnTimeChanged += UpdateDeleteTimeView;
         _deleteCooldownTimer.OnEnded += ActiveDeleteButton;
     }
-    
+
     public void Dispose()
     {
         _levelUI.BombButton.onClick.RemoveListener(ShowAdAndUseBomb);
@@ -94,49 +99,73 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
     private void ActiveDeleteButton()
     {
         _levelUI.DeleteObjectButton.interactable = true;
-        _levelUI.DeleteObjectImage.sprite = _abilityData.DeleteActiveSprite;
+        _levelUI.DeleteObjectCooldownImage.gameObject.SetActive(false);
     }
 
     private void DisableDeleteButton()
     {
         _levelUI.DeleteObjectButton.interactable = false;
-        _levelUI.DeleteObjectImage.sprite = _abilityData.DeleteInactiveSprite;
+        _levelUI.DeleteObjectCooldownImage.gameObject.SetActive(true);
+        _levelUI.DeleteObjectCooldownImage.fillAmount = 1f;
     }
 
+    private void UpdateDeleteTimeView()
+    {
+        _levelUI.DeleteObjectCooldownImage.fillAmount = 1f - _deleteCooldownTimer.Progress;
+    }
+    
     private void ActiveMixButton()
     {
         _levelUI.MixAllObjectsButton.interactable = true;
-        _levelUI.MixAllObjectsImage.sprite = _abilityData.MixActiveSprite;
+        _levelUI.MixAllObjectsCooldownImage.gameObject.SetActive(false);
     }
 
     private void DisableMixButton()
     {
         _levelUI.MixAllObjectsButton.interactable = false;
-        _levelUI.MixAllObjectsImage.sprite = _abilityData.MixInactiveSprite;
+        _levelUI.MixAllObjectsCooldownImage.gameObject.SetActive(true);
+        _levelUI.MixAllObjectsCooldownImage.fillAmount = 1f;
+    }
+
+    private void UpdateMixTimeView()
+    {
+        _levelUI.MixAllObjectsCooldownImage.fillAmount = 1f - _mixCooldownTimer.Progress;
     }
 
     private void ActiveSwapButton()
     {
         _levelUI.SwapTwoObjectsButton.interactable = true;
-        _levelUI.SwapTwoObjectsImage.sprite = _abilityData.SwapActiveSprite;
+        _levelUI.SwapTwoObjectsCooldownImage.gameObject.SetActive(false);
     }
 
     private void DisableSwapButton()
     {
         _levelUI.SwapTwoObjectsButton.interactable = false;
-        _levelUI.SwapTwoObjectsImage.sprite = _abilityData.SwapInactiveSprite;
+        _levelUI.SwapTwoObjectsCooldownImage.gameObject.SetActive(true);
+        _levelUI.SwapTwoObjectsCooldownImage.fillAmount = 1f;
+    }
+
+    private void UpdateSwapTimeView()
+    {
+        _levelUI.SwapTwoObjectsCooldownImage.fillAmount = 1f - _swapCooldownTimer.Progress;
     }
 
     private void ActiveBombButton()
     {
         _levelUI.BombButton.interactable = true;
-        _levelUI.BombImage.sprite = _abilityData.BombActiveSprite;
+        _levelUI.BombCooldownImage.gameObject.SetActive(false);
     }
 
     private void DisableBombButton()
     {
         _levelUI.BombButton.interactable = false;
-        _levelUI.BombImage.sprite = _abilityData.BombInactiveSprite;
+        _levelUI.BombCooldownImage.gameObject.SetActive(true);
+        _levelUI.BombCooldownImage.fillAmount = 1f;
+    }
+
+    private void UpdateBombTimeView()
+    {
+        _levelUI.BombCooldownImage.fillAmount = 1f - _bombCooldownTimer.Progress;
     }
     
     void IStartable.Start()
@@ -205,6 +234,8 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
     private void EnableMixAbility()
     {
         _mergeGameSystem.SetActiveGame(false);
+        
+        _cameraEffectsSystem.Shake(.5f, 0.1f);
         
         _mixCooldownTimer.ResetTime();
         _mixCooldownTimer.Play();

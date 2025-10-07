@@ -1,4 +1,4 @@
-using MyInput;
+using SaveLoad;
 using UI;
 using UnityEngine;
 using VContainer;
@@ -12,13 +12,18 @@ namespace Infrastructure.DI
         [SerializeField] private BombAbilityObject _bombAbilityObjectPrefab;
         protected override void Configure(IContainerBuilder builder)
         {
+            builder.Register<CameraEffectsSystem>(Lifetime.Singleton).AsSelf().WithParameter(Camera.main);
+            
             builder.RegisterInstance(_abilityConfig.AbilityData).AsSelf();
-            
+
             RegisterLevelUI(builder);
-            
+
             builder.RegisterComponentInHierarchy<MergeGameSystem>().AsSelf();
-            
+
             RegisterAbilitySystem(builder);
+            
+            builder.RegisterEntryPoint<LevelSaver>().AsSelf();
+            
         }
 
         private void RegisterLevelUI(IContainerBuilder builder)

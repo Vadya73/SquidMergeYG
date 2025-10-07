@@ -23,7 +23,7 @@ public class MergeGameSystem : MonoBehaviour
     [SerializeField] private LevelUI _levelUI;
 
     private SpawnObject _nextSpawnObject;
-    private int _points;
+    private int _score;
     private List<SpawnObject> _spawnObjects;
     
     private LoadScreen _loadScreen;
@@ -33,14 +33,16 @@ public class MergeGameSystem : MonoBehaviour
      
     private Action _onLsShow;
     private Action _onLsHide;
-    
+
     public Transform MinPos => _minPos;
     public Transform MaxPos => _maxPos;
     public List<SpawnObject> SpawnObjects => _spawnObjects;
-    
+    public int Score => _score;
+
 
     [Inject]
-    private void Construct(IObjectResolver objectResolver,LoadScreen loadScreen, AudioManager audioManager, AudioData audioData)
+    private void Construct(IObjectResolver objectResolver, LoadScreen loadScreen, AudioManager audioManager,
+        AudioData audioData)
     {
         _objectResolver = objectResolver;
         _loadScreen = loadScreen;
@@ -99,8 +101,8 @@ public class MergeGameSystem : MonoBehaviour
 
     private void AddPoints(int p0)
     {
-        _points += p0;
-        _pointText.text = _points.ToString();
+        _score += p0;
+        _pointText.text = _score.ToString();
     }
 
     public void ShowEndLevelScreen()
@@ -122,7 +124,7 @@ public class MergeGameSystem : MonoBehaviour
 
     private SpawnObject GenerateRandomObject()
     {
-        int randomInt = UnityEngine.Random.Range(0, 3);
+        int randomInt = Random.Range(0, 3);
         var mergeObject = _gameConfig.ObjectConfigs[randomInt].Prefab;
         mergeObject.SetConfig(_gameConfig.ObjectConfigs[randomInt]);
         return mergeObject;
@@ -144,8 +146,28 @@ public class MergeGameSystem : MonoBehaviour
             Destroy(spawnObject.gameObject);
         
         _spawnObjects.Clear();
-        _points = 0;
-        _pointText.text = _points.ToString();
+        _score = 0;
+        _pointText.text = _score.ToString();
         SetActiveGame(true);
+    }
+
+    public void SetLoadData(List<ObjectConfig> spawnObjects, int currentScore)
+    {
+        var spawnObjectToList = new List<SpawnObject>();
+        
+        _score = currentScore;
+        _pointText.text = _score.ToString();
+
+        foreach (var spawnObject in spawnObjects)
+        {
+            SpawnObject pref = _gameConfig.ObjectConfigs[(int)spawnObject.ObjectType].Prefab;
+            pref.SetConfig(_gameConfig.ObjectConfigs[(int)spawnObject.ObjectType]);
+            
+            SpawnObject obj = _objectResolver.Instantiate(pref, _objectsHolder);
+            obj.SetSavedPosition();
+            spawnObjectToList.Add(obj);
+        }
+        
+        _spawnObjects = spawnObjectToList;
     }
 }

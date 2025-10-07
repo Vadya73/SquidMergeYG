@@ -37,6 +37,7 @@ public class SpawnObjectPosition : MonoBehaviour
     {
         _currentObject = prefab;
         prefab.transform.localScale = Vector3.zero;
+        prefab.transform.position = new Vector3(prefab.transform.position.x, prefab.transform.position.y, -1f);
         DOTween.Sequence()
             .AppendInterval(0.2f)
             .Append(prefab.transform.DOScale(Vector3.one, .5f))
@@ -95,6 +96,7 @@ public class SpawnObjectPosition : MonoBehaviour
         _isDragging = false;
         if (_currentObject != null)
         {
+            _currentObject.transform.position = new Vector3(_currentObject.transform.position.x, _currentObject.transform.position.y, transform.position.z);
             _audioManager.PlaySound(_audioData.InputReleaseSound);
             _mergeGameSystem.AddSpawnObjectToList(_currentObject);
             _currentObject.ActivateObject();

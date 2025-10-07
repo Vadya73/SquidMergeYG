@@ -1,10 +1,8 @@
-﻿using System;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 using UnityEngine;
 using UnityEngine.UI;
 using YG.Insides;
 using YG.Utils.LB;
-using System.Collections.Generic;
 
 #if Localization_yg
 using YG.Utils.Lang;

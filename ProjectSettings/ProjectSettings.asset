@@ -86,6 +86,7 @@ PlayerSettings:
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
   Force IOS Speakers When Recording: 0
+  audioSpatialExperience: 0
   deferSystemGesturesMode: 0
   hideHomeButton: 0
   submitAnalytics: 1
@@ -132,6 +133,7 @@ PlayerSettings:
   switchNVNMaxPublicSamplerIDCount: 0
   switchMaxWorkerMultiple: 8
   switchNVNGraphicsFirmwareMemory: 32
+  switchGraphicsJobsSyncAfterKick: 1
   vulkanNumSwapchainBuffers: 3
   vulkanEnableSetSRGBWrite: 0
   vulkanEnablePreTransform: 0
@@ -271,6 +273,9 @@ PlayerSettings:
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
+  androidAppCategory: 3
+  useAndroidAppCategory: 1
+  androidAppCategoryOther: 
   AndroidEnableTango: 0
   androidEnableBanner: 1
   androidUseLowAccuracyLocation: 0
@@ -576,24 +581,24 @@ PlayerSettings:
   webWasm2023: 0
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
-    Android: DOTWEEN
+    Android: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
     EmbeddedLinux: DOTWEEN
     GameCoreScarlett: DOTWEEN
     GameCoreXboxOne: DOTWEEN
     Kepler: DOTWEEN
-    LinuxHeadlessSimulation: DOTWEEN
-    Nintendo Switch: DOTWEEN
-    PS4: DOTWEEN
-    PS5: DOTWEEN
+    LinuxHeadlessSimulation: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    Nintendo Switch: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    PS4: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    PS5: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
     QNX: DOTWEEN
     ReservedCFE: DOTWEEN
-    Standalone: DOTWEEN
+    Standalone: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
     VisionOS: DOTWEEN
-    WebGL: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;InterstitialAdv_yg;RewardedAdv_yg;Authorization_yg;Leaderboards_yg;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3
-    Windows Store Apps: DOTWEEN
-    XboxOne: DOTWEEN
-    iPhone: DOTWEEN
-    tvOS: DOTWEEN
+    WebGL: DOTWEEN;YandexGamesPlatform_yg;PLUGIN_YG_2;TMP_YG2;RU_YG2;RewardedAdv_yg;Leaderboards_yg;ODIN_INSPECTOR;ODIN_INSPECTOR_3;ODIN_INSPECTOR_3_1;ODIN_INSPECTOR_3_2;ODIN_INSPECTOR_3_3;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    Windows Store Apps: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    XboxOne: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    iPhone: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
+    tvOS: DOTWEEN;PLUGIN_YG_2;YandexGamesPlatform_yg;Leaderboards_yg;RewardedAdv_yg;TMP_YG2;NJSON_YG2;Authorization_yg;InterstitialAdv_yg;Storage_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
