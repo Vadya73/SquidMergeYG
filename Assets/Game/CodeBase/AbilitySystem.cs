@@ -84,15 +84,19 @@ public class AbilitySystem : IStartable, IInitializable, IDisposable
         _levelUI.DeleteObjectButton.onClick.RemoveListener(ShowAdAndUseDelete);
         
         _bombCooldownTimer.OnStarted -= DisableBombButton;
+        _bombCooldownTimer.OnTimeChanged -= UpdateBombTimeView;
         _bombCooldownTimer.OnEnded -= ActiveBombButton;
 
         _swapCooldownTimer.OnStarted -= DisableSwapButton;
+        _swapCooldownTimer.OnTimeChanged -= UpdateSwapTimeView;
         _swapCooldownTimer.OnEnded -= ActiveSwapButton;
 
         _mixCooldownTimer.OnStarted -= DisableMixButton;
+        _mixCooldownTimer.OnTimeChanged -= UpdateMixTimeView;
         _mixCooldownTimer.OnEnded -= ActiveMixButton;
 
         _deleteCooldownTimer.OnStarted -= DisableDeleteButton;
+        _deleteCooldownTimer.OnTimeChanged -= UpdateDeleteTimeView;
         _deleteCooldownTimer.OnEnded -= ActiveDeleteButton;
     }
 

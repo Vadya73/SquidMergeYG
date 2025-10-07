@@ -3,6 +3,7 @@ using DG.Tweening;
 using SaveLoad;
 using VContainer;
 using VContainer.Unity;
+using YG;
 
 namespace UI
 {
@@ -51,6 +52,7 @@ namespace UI
 
         private void ResetGame()
         {
+            YG2.InterstitialAdvShow();
             _mergeGameSystem.ResetGame();
             _levelUI.EndUIObject.SetActive(false);
         }
@@ -63,6 +65,7 @@ namespace UI
 
         private void LoadMainMenuFromEnd()
         {
+            YG2.InterstitialAdvShow();
             _levelSaver.CleanLevelData();
             _loadScreen.LoadScene(1);
         }

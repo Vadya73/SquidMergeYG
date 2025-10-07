@@ -435,6 +435,14 @@ PrefabInstance:
       propertyPath: 'autoInjectGameObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 915499338}
+    - target: {fileID: 4972651106116070197, guid: e03eca2b2001b774fa3364c5e6e3238d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 7.8200684
+      objectReference: {fileID: 0}
+    - target: {fileID: 4972651106116070197, guid: e03eca2b2001b774fa3364c5e6e3238d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.0999756
+      objectReference: {fileID: 0}
     - target: {fileID: 7291341588655870951, guid: e03eca2b2001b774fa3364c5e6e3238d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 30.59935
