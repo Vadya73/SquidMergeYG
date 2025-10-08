@@ -61,14 +61,14 @@ namespace UI
         private void LoadMainMenu()
         {
             _levelSaver.SaveLevel();
-            _loadScreen.LoadScene(1);
+            _ = _loadScreen.LoadScene(1);
         }
 
         private void LoadMainMenuFromEnd()
         {
             YG2.InterstitialAdvShow();
             _levelSaver.CleanLevelData();
-            _loadScreen.LoadScene(1);
+            _ = _loadScreen.LoadScene(1);
         }
 
         private void ShowPlanetsHint()

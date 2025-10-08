@@ -39,10 +39,10 @@ public class BombAbilityObject : MonoBehaviour
     {
         if (!_isActive)
             return;
-
+        
         if (_input.GetPointerPosition() is { } pointerPosition)
         {
-            _objectTransform.position = new Vector3(pointerPosition.x,pointerPosition.y, transform.position.z);
+            _objectTransform.position = new Vector3(pointerPosition.x, pointerPosition.y, transform.position.z);
             _isMoving = true;
             return;
         }
@@ -53,6 +53,7 @@ public class BombAbilityObject : MonoBehaviour
             _isMoving = false;
         }
     }
+
 
     public void SetActivateGame(Action action)
     {

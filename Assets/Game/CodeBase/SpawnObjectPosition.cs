@@ -1,9 +1,11 @@
 using Audio;
 using DG.Tweening;
 using Game.CodeBase;
+using MyInput;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using VContainer;
+using System.Collections.Generic;
 
 public class SpawnObjectPosition : MonoBehaviour
 {
@@ -18,7 +20,7 @@ public class SpawnObjectPosition : MonoBehaviour
     private AudioData _audioData;
 
     [Inject]
-    private void Construct(AudioManager audioManager,AudioData audioData, MergeGameSystem mergeGameSystem)
+    private void Construct(AudioManager audioManager, AudioData audioData, MergeGameSystem mergeGameSystem)
     {
         _audioManager = audioManager;
         _audioData = audioData;
@@ -48,17 +50,30 @@ public class SpawnObjectPosition : MonoBehaviour
 
     private void HandleInput()
     {
-        if (!_inputActive)
+        if (!_inputActive || !GameState.InputEnabled)
             return;
-            
-        bool isTouching = Input.touchCount > 0;
-    
-        if (isTouching)
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (Input.GetMouseButton(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (IsPointerOverUI(Input.mousePosition))
                 return;
-                
+
+            _isDragging = true;
+            MoveObject(Input.mousePosition);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            OnInputReleased();
+        }
+#else
+        if (Input.touchCount > 0)
+        {
             Touch touch = Input.GetTouch(0);
+
+            if (IsPointerOverUI(touch.position))
+                return;
+
             if (touch.phase == TouchPhase.Began || touch.phase == TouchPhase.Moved)
             {
                 _isDragging = true;
@@ -71,9 +86,9 @@ public class SpawnObjectPosition : MonoBehaviour
         }
         else if (Input.GetMouseButton(0))
         {
-            if (EventSystem.current.IsPointerOverGameObject()) 
+            if (IsPointerOverUI(Input.mousePosition))
                 return;
-                
+
             _isDragging = true;
             MoveObject(Input.mousePosition);
         }
@@ -85,6 +100,7 @@ public class SpawnObjectPosition : MonoBehaviour
         {
             OnInputReleased();
         }
+#endif
     }
 
     private void OnInputReleased()
@@ -92,11 +108,16 @@ public class SpawnObjectPosition : MonoBehaviour
         if (!_isDragging) return;
 
         _inputActive = false;
-    
         _isDragging = false;
+
         if (_currentObject != null)
         {
-            _currentObject.transform.position = new Vector3(_currentObject.transform.position.x, _currentObject.transform.position.y, transform.position.z);
+            _currentObject.transform.position = new Vector3(
+                _currentObject.transform.position.x, 
+                _currentObject.transform.position.y, 
+                transform.position.z
+            );
+
             _audioManager.PlaySound(_audioData.InputReleaseSound);
             _mergeGameSystem.AddSpawnObjectToList(_currentObject);
             _currentObject.ActivateObject();
@@ -120,5 +141,21 @@ public class SpawnObjectPosition : MonoBehaviour
         );
 
         transform.position = new Vector3(clampedX, transform.position.y, worldPos.z);
+    }
+    
+    private bool IsPointerOverUI(Vector2 screenPosition)
+    {
+        if (EventSystem.current == null)
+            return false;
+
+        PointerEventData eventData = new PointerEventData(EventSystem.current)
+        {
+            position = screenPosition
+        };
+
+        var results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        return results.Count > 0;
     }
 }

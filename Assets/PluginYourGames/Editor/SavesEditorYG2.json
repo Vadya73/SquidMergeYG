@@ -1,50 +1,7 @@
 {
-    "SpawnObjects": [
-        {
-            "_objectType": 0,
-            "_sprite": {
-                "instanceID": 47882
-            },
-            "_prefab": {
-                "instanceID": 49842
-            },
-            "_addPoints": 5,
-            "_savedPosition": {
-                "x": 0.12778352200984956,
-                "y": -2.827000617980957
-            }
-        },
-        {
-            "_objectType": 3,
-            "_sprite": {
-                "instanceID": 47886
-            },
-            "_prefab": {
-                "instanceID": 49848
-            },
-            "_addPoints": 20,
-            "_savedPosition": {
-                "x": -1.5689866542816163,
-                "y": -2.4420101642608644
-            }
-        },
-        {
-            "_objectType": 4,
-            "_sprite": {
-                "instanceID": 47876
-            },
-            "_prefab": {
-                "instanceID": 49850
-            },
-            "_addPoints": 25,
-            "_savedPosition": {
-                "x": 1.39608633518219,
-                "y": -2.297422170639038
-            }
-        }
-    ],
-    "CurrentScore": 95,
-    "HighScore": 95,
+    "SpawnObjects": [],
+    "CurrentScore": 0,
+    "HighScore": 580,
     "SoundActive": true,
     "intExample": 5,
     "strExample": "Hello!",
@@ -54,5 +11,5 @@
         false,
         false
     ],
-    "idSave": 8
+    "idSave": 17
 }

@@ -54,7 +54,7 @@ namespace UI
 
         private void StartGame()
         {
-            _loadScreen.LoadScene(2);
+            _ = _loadScreen.LoadScene(2);
         }
 
         private void SwitchSoundActive()

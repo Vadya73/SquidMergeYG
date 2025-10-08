@@ -7,9 +7,6 @@ namespace MyInput
     {
         public Vector3? GetPointerPosition()
         {
-            if (!GameState.InputEnabled)
-                return null;
-
             if (Input.touches.Length > 0)
             {
                 if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
@@ -33,6 +30,7 @@ namespace MyInput
     public static class GameState
     {
         public static bool InputEnabled = true;
+        public static bool GameFinished = false;
     }
 
 }

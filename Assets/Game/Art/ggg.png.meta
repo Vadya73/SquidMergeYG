@@ -164,7 +164,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_17"
+      name: ggg
       rect:
         serializedVersion: 2
         x: 0
@@ -208,7 +208,6 @@ TextureImporter:
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_14": -4391748997057803359
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_15": -455363788314515258
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_16": 2194144885789943931
-      "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_17": -1967971085734454098
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_2": 2817145662017434994
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_3": 8651020446061761524
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_4": 4752512356651248952
@@ -217,6 +216,7 @@ TextureImporter:
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_7": -3572228001305777420
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_8": 669704791944349550
       "ChatGPT Image 8 \u043E\u043A\u0442. 2025 \u0433., 16_19_08_9": 7661366917623571468
+      ggg: -1967971085734454098
       ggg_0: -1025135130
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

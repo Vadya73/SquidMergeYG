@@ -15,6 +15,6 @@ public class GameBootstrapper : MonoBehaviour
 
     private void Start()
     {
-        _loadScreen.LoadScene(1);
+        _ = _loadScreen.LoadScene(1);
     }
 }

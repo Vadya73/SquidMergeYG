@@ -58,6 +58,7 @@ public class MergeGameSystem : MonoBehaviour
     private void Awake()
     {
         SetActiveGame(false);
+        GameState.GameFinished = false;
     }
 
     private void Start()
@@ -104,9 +105,10 @@ public class MergeGameSystem : MonoBehaviour
         
         AddSpawnObjectToList(spawnObject);
     }
-
+    
     public void SetActiveGame(bool active)
     {
+        GameState.InputEnabled = active;
         _spawnObjectPositionComponent.SetInputActive(active);
     }
 
@@ -118,6 +120,7 @@ public class MergeGameSystem : MonoBehaviour
 
     public void ShowEndLevelScreen()
     {
+        GameState.GameFinished = true;
         YG2.SetLeaderboard("PointsLeaderboard", _score);
         _levelSaver.CleanLevelData();
         _levelUI.EndUIObject.SetActive(true);
@@ -155,6 +158,8 @@ public class MergeGameSystem : MonoBehaviour
 
     public void ResetGame()
     {
+        GameState.GameFinished = false;
+        
         foreach (var spawnObject in _spawnObjects)
             Destroy(spawnObject.gameObject);
         
@@ -183,11 +188,4 @@ public class MergeGameSystem : MonoBehaviour
         
         _spawnObjects = spawnObjectToList;
     }
-    
-    public void SetActiveGame(bool active)
-    {
-        GameState.InputEnabled = active;   // управляем глобальным состоянием
-        _spawnObjectPositionComponent.SetInputActive(active);
-    }
-
 }
