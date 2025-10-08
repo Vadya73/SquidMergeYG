@@ -1,0 +1,15 @@
+{
+    "SpawnObjects": [],
+    "CurrentScore": 0,
+    "HighScore": 0,
+    "SoundActive": true,
+    "intExample": 5,
+    "strExample": "Hello!",
+    "boolExample": [
+        false,
+        false,
+        false,
+        false
+    ],
+    "idSave": 4
+}

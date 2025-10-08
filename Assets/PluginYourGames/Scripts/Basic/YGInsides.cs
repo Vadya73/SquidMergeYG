@@ -1,7 +1,6 @@
 namespace YG.Insides
 {
 #if PLATFORM_WEBGL
-    using System.Runtime.InteropServices;
 #endif
 
     public static partial class YGInsides

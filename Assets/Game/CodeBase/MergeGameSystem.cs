@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using Audio;
 using Game.CodeBase;
+using SaveLoad;
 using TMPro;
 using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using VContainer;
 using VContainer.Unity;
+using YG;
 using Random = UnityEngine.Random;
 
 public class MergeGameSystem : MonoBehaviour
@@ -33,6 +35,7 @@ public class MergeGameSystem : MonoBehaviour
      
     private Action _onLsShow;
     private Action _onLsHide;
+    private LevelSaver _levelSaver;
 
     public Transform MinPos => _minPos;
     public Transform MaxPos => _maxPos;
@@ -52,8 +55,9 @@ public class MergeGameSystem : MonoBehaviour
     
     private void Start()
     {
+        _levelSaver = _objectResolver.Resolve<LevelSaver>();
         _spawnObjects = new List<SpawnObject>();
-        
+
         var instObject = _objectResolver.Instantiate(_gameConfig.ObjectConfigs[0].Prefab, _spawnPosition);
         instObject.DeactivateObject();
         instObject.transform.position = _spawnPosition.position;
@@ -107,6 +111,8 @@ public class MergeGameSystem : MonoBehaviour
 
     public void ShowEndLevelScreen()
     {
+        YG2.SetLeaderboard("PointsLeaderboard", _score);
+        _levelSaver.CleanLevelData();
         _levelUI.EndUIObject.SetActive(true);
         _audioManager.PlaySound(_audioData.EndLevelSound);
     }

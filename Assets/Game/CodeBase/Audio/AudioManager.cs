@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 using VContainer;
+using YG;
 
 namespace Audio
 {
@@ -17,7 +18,15 @@ namespace Audio
         {
             _audioData = audioData;
         }
-        
+
+        private void Start()
+        {
+            _audioData.SetSoundActive(YG2.saves.SoundActive);
+
+            _soundSource.mute = !_audioData.SoundActive;
+            _musicSource.mute = !_audioData.SoundActive;
+        }
+
         public void SwitchSound()
         {
             _audioData.SwitchSoundActive();

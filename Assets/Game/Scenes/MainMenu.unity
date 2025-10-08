@@ -639,7 +639,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
@@ -698,7 +698,6 @@ GameObject:
   - component: {fileID: 1013038114}
   - component: {fileID: 1013038113}
   - component: {fileID: 1013038112}
-  - component: {fileID: 1013038115}
   m_Layer: 5
   m_Name: '[Button] Sound'
   m_TagString: Untagged
@@ -807,20 +806,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013038110}
   m_CullTransparentMesh: 1
---- !u!114 &1013038115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1013038110}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb5c989cfa0d454fa94dade9a54e752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloatingLogo
-  _amplitude: 10
-  _frequency: 0.7
 --- !u!1 &1041349408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,7 +1439,6 @@ GameObject:
   - component: {fileID: 1792111878}
   - component: {fileID: 1792111877}
   - component: {fileID: 1792111876}
-  - component: {fileID: 1792111879}
   m_Layer: 5
   m_Name: '[Button] Play'
   m_TagString: Untagged
@@ -1563,20 +1547,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1792111874}
   m_CullTransparentMesh: 1
---- !u!114 &1792111879
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1792111874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb5c989cfa0d454fa94dade9a54e752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloatingLogo
-  _amplitude: 10
-  _frequency: 0.7
 --- !u!1 &1962534222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1559,6 @@ GameObject:
   - component: {fileID: 1962534226}
   - component: {fileID: 1962534225}
   - component: {fileID: 1962534224}
-  - component: {fileID: 1962534227}
   m_Layer: 5
   m_Name: '[Button] Rating'
   m_TagString: Untagged
@@ -1698,20 +1667,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962534222}
   m_CullTransparentMesh: 1
---- !u!114 &1962534227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1962534222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cb5c989cfa0d454fa94dade9a54e752, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FloatingLogo
-  _amplitude: 10
-  _frequency: 0.7
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

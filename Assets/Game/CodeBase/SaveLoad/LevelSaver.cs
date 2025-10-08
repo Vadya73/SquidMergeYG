@@ -38,9 +38,9 @@ namespace SaveLoad
             if (YG2.saves.HighScore < _mergeGameSystem.Score)
             {
                 YG2.saves.HighScore = _mergeGameSystem.Score;
-                YG2.SetLeaderboard("PointsLeaderboard", _mergeGameSystem.Score);
             }
             
+            YG2.SaveProgress();
             Debug.Log($"Level Saved, objects: {_spawnObjects.Count}, score: {_mergeGameSystem.Score}" );
         }
 
@@ -60,6 +60,7 @@ namespace SaveLoad
         {
             YG2.saves.SpawnObjects = null;
             YG2.saves.CurrentScore = 0;
+            YG2.SaveProgress();
         }
     }
 }

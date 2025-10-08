@@ -1,3 +1,4 @@
+using System;
 using Audio;
 using UnityEngine;
 using UnityEngine.UI;
@@ -36,8 +37,10 @@ namespace UI
             _closeRatingButton.onClick.AddListener(CloseRating);
             
             _ratingObject.SetActive(false);
+        }
 
-            
+        private void Start()
+        {
             _soundImage.sprite = _audioData.SoundActive ? _audioData.SoundActiveSprite : _audioData.SoundInactiveSprite;
         }
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using YG;
 
 namespace Audio
 {
@@ -49,6 +50,8 @@ namespace Audio
         public void SwitchSoundActive()
         {
             _soundActive = !_soundActive;
+            YG2.saves.SoundActive = _soundActive;
+            YG2.SaveProgress();
         }
         
         public void SetSoundActive(bool active) => _soundActive = active;
