@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using Audio;
 using Game.CodeBase;
+using Infrastructure;
+using MyInput;
 using SaveLoad;
 using TMPro;
 using UI;
@@ -52,7 +54,12 @@ public class MergeGameSystem : MonoBehaviour
         _audioManager = audioManager;
         _audioData = audioData;
     }
-    
+
+    private void Awake()
+    {
+        SetActiveGame(false);
+    }
+
     private void Start()
     {
         _levelSaver = _objectResolver.Resolve<LevelSaver>();
@@ -176,4 +183,11 @@ public class MergeGameSystem : MonoBehaviour
         
         _spawnObjects = spawnObjectToList;
     }
+    
+    public void SetActiveGame(bool active)
+    {
+        GameState.InputEnabled = active;   // управляем глобальным состоянием
+        _spawnObjectPositionComponent.SetInputActive(active);
+    }
+
 }

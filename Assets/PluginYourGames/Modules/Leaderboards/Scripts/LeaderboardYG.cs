@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG.Insides;
 using YG.Utils.LB;
+using System.Collections.Generic;
+using System;
 
 #if Localization_yg
 using YG.Utils.Lang;

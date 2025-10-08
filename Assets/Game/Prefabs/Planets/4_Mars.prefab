@@ -296,5 +296,5 @@ MonoBehaviour:
     _sprite: {fileID: 21300000, guid: 003d1bab21760fe449a65e4cff088a1c, type: 3}
     _prefab: {fileID: 1154133714138182890}
     _addPoints: 20
-    _savedPosition: {x: -1.1200296, y: -2.4412003}
+    _savedPosition: {x: 0, y: 0}
   _selectObjectBacklight: {fileID: 4431423850913427441}

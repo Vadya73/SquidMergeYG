@@ -8,6 +8,6 @@ namespace YG
         public List<ObjectConfig> SpawnObjects;
         public int CurrentScore;
         public int HighScore;
-        public bool SoundActive;
+        public bool SoundActive = true;
     }
 }
