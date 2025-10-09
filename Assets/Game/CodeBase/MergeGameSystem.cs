@@ -121,7 +121,14 @@ public class MergeGameSystem : MonoBehaviour
     public void ShowEndLevelScreen()
     {
         GameState.GameFinished = true;
-        YG2.SetLeaderboard("PointsLeaderboard", _score);
+
+        if (_score > YG2.saves.HighScore)
+        {
+            Debug.Log($"New High Score: {_score}, old High Score: {YG2.saves.HighScore}");
+            YG2.SetLeaderboard("PointsLeaderboard", _score);
+            YG2.saves.HighScore = _score;
+        }
+        
         _levelSaver.CleanLevelData();
         _levelUI.EndUIObject.SetActive(true);
         _audioManager.PlaySound(_audioData.EndLevelSound);

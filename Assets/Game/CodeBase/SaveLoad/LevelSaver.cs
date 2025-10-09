@@ -29,16 +29,10 @@ namespace SaveLoad
             {
                 spawnObject.SavePosition();
                 _spawnObjects.Add(spawnObject.Config);
-                Debug.Log(spawnObject.Config.Prefab);
             }
             
             YG2.saves.SpawnObjects = _spawnObjects;
             YG2.saves.CurrentScore = _mergeGameSystem.Score;
-
-            if (YG2.saves.HighScore < _mergeGameSystem.Score)
-            {
-                YG2.saves.HighScore = _mergeGameSystem.Score;
-            }
             
             YG2.SaveProgress();
             Debug.Log($"Level Saved, objects: {_spawnObjects.Count}, score: {_mergeGameSystem.Score}" );
