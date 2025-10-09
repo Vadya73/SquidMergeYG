@@ -1,8 +1,66 @@
 {
-    "SpawnObjects": [],
-    "CurrentScore": 0,
+    "SpawnObjects": [
+        {
+            "_objectType": 0,
+            "_sprite": {
+                "instanceID": 49170
+            },
+            "_prefab": {
+                "instanceID": 51134
+            },
+            "_addPoints": 5,
+            "_savedPosition": {
+                "x": -1.0738197565078736,
+                "y": -2.858692169189453
+            }
+        },
+        {
+            "_objectType": 3,
+            "_sprite": {
+                "instanceID": 49174
+            },
+            "_prefab": {
+                "instanceID": 51140
+            },
+            "_addPoints": 20,
+            "_savedPosition": {
+                "x": 1.523423433303833,
+                "y": -2.487743854522705
+            }
+        },
+        {
+            "_objectType": 2,
+            "_sprite": {
+                "instanceID": 49180
+            },
+            "_prefab": {
+                "instanceID": -7972
+            },
+            "_addPoints": 15,
+            "_savedPosition": {
+                "x": -0.2630629241466522,
+                "y": -2.5894007682800295
+            }
+        },
+        {
+            "_objectType": 2,
+            "_sprite": {
+                "instanceID": 49180
+            },
+            "_prefab": {
+                "instanceID": 51138
+            },
+            "_addPoints": 15,
+            "_savedPosition": {
+                "x": -1.6822010278701783,
+                "y": -2.4112536907196047
+            }
+        }
+    ],
+    "CurrentScore": 25,
     "HighScore": 6145,
     "SoundActive": true,
+    "IsShowReview": false,
     "intExample": 5,
     "strExample": "Hello!",
     "boolExample": [
@@ -11,5 +69,5 @@
         false,
         false
     ],
-    "idSave": 177
+    "idSave": 180
 }

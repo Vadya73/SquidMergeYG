@@ -128,6 +128,12 @@ public class MergeGameSystem : MonoBehaviour
             YG2.SetLeaderboard("PointsLeaderboard", _score);
             YG2.saves.HighScore = _score;
         }
+
+        if (!YG2.saves.IsShowReview)
+        {
+            YG2.ReviewShow();
+            YG2.saves.IsShowReview = true;
+        }
         
         _levelSaver.CleanLevelData();
         _levelUI.EndUIObject.SetActive(true);

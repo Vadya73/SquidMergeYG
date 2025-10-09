@@ -9,5 +9,6 @@ namespace YG
         public int CurrentScore;
         public int HighScore;
         public bool SoundActive = true;
+        public bool IsShowReview = false;
     }
 }
