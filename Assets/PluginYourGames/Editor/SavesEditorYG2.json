@@ -1,63 +1,175 @@
 {
     "SpawnObjects": [
         {
-            "_objectType": 0,
+            "_objectType": 3,
             "_sprite": {
-                "instanceID": 49170
+                "instanceID": 49190
             },
             "_prefab": {
-                "instanceID": 51134
+                "instanceID": 51164
+            },
+            "_addPoints": 20,
+            "_savedPosition": {
+                "x": -0.18269789218902589,
+                "y": 0.07105094194412232
+            }
+        },
+        {
+            "_objectType": 0,
+            "_sprite": {
+                "instanceID": 49186
+            },
+            "_prefab": {
+                "instanceID": -4606
             },
             "_addPoints": 5,
             "_savedPosition": {
-                "x": -1.0738197565078736,
-                "y": -2.858692169189453
+                "x": 1.9062964916229249,
+                "y": -2.8784029483795168
+            }
+        },
+        {
+            "_objectType": 2,
+            "_sprite": {
+                "instanceID": 49196
+            },
+            "_prefab": {
+                "instanceID": 51162
+            },
+            "_addPoints": 15,
+            "_savedPosition": {
+                "x": 0.6579569578170776,
+                "y": 0.8493853807449341
+            }
+        },
+        {
+            "_objectType": 6,
+            "_sprite": {
+                "instanceID": 49194
+            },
+            "_prefab": {
+                "instanceID": 51170
+            },
+            "_addPoints": 35,
+            "_savedPosition": {
+                "x": 0.23823967576026917,
+                "y": -2.22233510017395
+            }
+        },
+        {
+            "_objectType": 0,
+            "_sprite": {
+                "instanceID": 49186
+            },
+            "_prefab": {
+                "instanceID": -4936
+            },
+            "_addPoints": 5,
+            "_savedPosition": {
+                "x": 1.1833775043487549,
+                "y": -1.5651123523712159
+            }
+        },
+        {
+            "_objectType": 0,
+            "_sprite": {
+                "instanceID": 49186
+            },
+            "_prefab": {
+                "instanceID": -5024
+            },
+            "_addPoints": 5,
+            "_savedPosition": {
+                "x": -1.9337952136993409,
+                "y": -1.8723297119140626
+            }
+        },
+        {
+            "_objectType": 5,
+            "_sprite": {
+                "instanceID": 49192
+            },
+            "_prefab": {
+                "instanceID": 51168
+            },
+            "_addPoints": 30,
+            "_savedPosition": {
+                "x": 1.2723884582519532,
+                "y": -0.41758084297180178
+            }
+        },
+        {
+            "_objectType": 4,
+            "_sprite": {
+                "instanceID": 49180
+            },
+            "_prefab": {
+                "instanceID": 51166
+            },
+            "_addPoints": 25,
+            "_savedPosition": {
+                "x": -1.3902337551116944,
+                "y": 0.8085242509841919
             }
         },
         {
             "_objectType": 3,
             "_sprite": {
-                "instanceID": 49174
+                "instanceID": 49190
             },
             "_prefab": {
-                "instanceID": 51140
+                "instanceID": 51164
             },
             "_addPoints": 20,
             "_savedPosition": {
-                "x": 1.523423433303833,
-                "y": -2.487743854522705
+                "x": -0.18269789218902589,
+                "y": 0.07105094194412232
             }
         },
         {
             "_objectType": 2,
             "_sprite": {
-                "instanceID": 49180
+                "instanceID": 49196
             },
             "_prefab": {
-                "instanceID": -7972
+                "instanceID": 51162
             },
             "_addPoints": 15,
             "_savedPosition": {
-                "x": -0.2630629241466522,
-                "y": -2.5894007682800295
+                "x": 0.6579569578170776,
+                "y": 0.8493853807449341
             }
         },
         {
-            "_objectType": 2,
+            "_objectType": 1,
+            "_sprite": {
+                "instanceID": 49182
+            },
+            "_prefab": {
+                "instanceID": 51160
+            },
+            "_addPoints": 10,
+            "_savedPosition": {
+                "x": 1.7893505096435547,
+                "y": 0.7602416276931763
+            }
+        },
+        {
+            "_objectType": 4,
             "_sprite": {
                 "instanceID": 49180
             },
             "_prefab": {
-                "instanceID": 51138
+                "instanceID": 51166
             },
-            "_addPoints": 15,
+            "_addPoints": 25,
             "_savedPosition": {
-                "x": -1.6822010278701783,
-                "y": -2.4112536907196047
+                "x": -1.3902337551116944,
+                "y": 0.8085242509841919
             }
         }
     ],
-    "CurrentScore": 25,
+    "CurrentScore": 775,
     "HighScore": 6145,
     "SoundActive": true,
     "IsShowReview": false,
@@ -69,5 +181,5 @@
         false,
         false
     ],
-    "idSave": 180
+    "idSave": 183
 }

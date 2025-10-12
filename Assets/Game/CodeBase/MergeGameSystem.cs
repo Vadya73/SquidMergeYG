@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Audio;
+using DG.Tweening;
 using Game.CodeBase;
 using Infrastructure;
 using MyInput;
@@ -131,7 +132,7 @@ public class MergeGameSystem : MonoBehaviour
 
         if (!YG2.saves.IsShowReview)
         {
-            YG2.ReviewShow();
+            DOVirtual.DelayedCall(1f, YG2.ReviewShow);
             YG2.saves.IsShowReview = true;
         }
         
