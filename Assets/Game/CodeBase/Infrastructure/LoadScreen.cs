@@ -21,6 +21,8 @@ namespace Infrastructure
         public event Action OnSceneLoad;
         public event Action OnLoadScreenShow;
         public event Action OnLoadScreenHide;
+
+        public Button AcceptButton => _acceptButton;
         
         private void Awake()
         {

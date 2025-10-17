@@ -5,6 +5,7 @@ using YG.Insides;
 using YG.Utils.LB;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 #if Localization_yg
 using YG.Utils.Lang;
@@ -252,6 +253,9 @@ namespace YG
                 }
 
                 players[i].UpdateEntries();
+                
+                var rootRect = rootSpawnPlayersData.GetComponent<RectTransform>();
+                rootRect.sizeDelta = new Vector2(rootRect.sizeDelta.x, players.Length * (playerDataPrefab.GetComponent<RectTransform>().rect.height + 25));
             }
         }
 

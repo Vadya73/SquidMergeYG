@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Game.CodeBase;
 using UnityEngine;
 using VContainer.Unity;
 using YG;
@@ -8,8 +9,6 @@ namespace SaveLoad
     public class LevelSaver : IInitializable
     {
         private MergeGameSystem _mergeGameSystem;
-        private int _currentScore;
-        private List<ObjectConfig> _spawnObjects;
 
         public LevelSaver(MergeGameSystem mergeGameSystem)
         {
@@ -23,36 +22,43 @@ namespace SaveLoad
 
         public void SaveLevel()
         {
-            _spawnObjects = new List<ObjectConfig>();
-            
+            YG2.saves.SpawnObjectsData.Clear();
+            var objectsData = new List<SpawnObjectData>();
+
             foreach (var spawnObject in _mergeGameSystem.SpawnObjects)
             {
-                spawnObject.SavePosition();
-                _spawnObjects.Add(spawnObject.Config);
+                var pos = spawnObject.transform.position;
+                objectsData.Add(new SpawnObjectData
+                {
+                    ObjectType = spawnObject.Config.ObjectType,
+                    X = pos.x,
+                    Y = pos.y,
+                    Z = pos.z
+                });
             }
-            
-            YG2.saves.SpawnObjects = _spawnObjects;
+
+            YG2.saves.SpawnObjectsData = objectsData;
             YG2.saves.CurrentScore = _mergeGameSystem.Score;
-            
             YG2.SaveProgress();
-            Debug.Log($"Level Saved, objects: {_spawnObjects.Count}, score: {_mergeGameSystem.Score}" );
+
+            Debug.Log($"Level Saved, objects: {objectsData.Count}, score: {_mergeGameSystem.Score}" );
         }
 
         private void LoadLevel()
         {
-            _spawnObjects = YG2.saves.SpawnObjects;
-            _currentScore = YG2.saves.CurrentScore;
+            var objectsData = YG2.saves.SpawnObjectsData;
+            var currentScore = YG2.saves.CurrentScore;
             
-            if (_spawnObjects == null ||_spawnObjects.Count == 0)
+            if (objectsData == null ||objectsData.Count == 0)
                 return;
             
-            _mergeGameSystem.SetLoadData(_spawnObjects, _currentScore);
-            Debug.Log("Level Loaded, spawned: " + _spawnObjects.Count + " objects, Score: " + _currentScore);
+            _mergeGameSystem.SetLoadData(objectsData, currentScore);
+            Debug.Log("Level Loaded, spawned: " + objectsData.Count + " objects, Score: " + currentScore);
         }
 
         public void CleanLevelData()
         {
-            YG2.saves.SpawnObjects = null;
+            YG2.saves.SpawnObjectsData.Clear();
             YG2.saves.CurrentScore = 0;
             YG2.SaveProgress();
         }

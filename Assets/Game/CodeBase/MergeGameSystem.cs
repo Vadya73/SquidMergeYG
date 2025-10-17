@@ -29,7 +29,7 @@ public class MergeGameSystem : MonoBehaviour
 
     private SpawnObject _nextSpawnObject;
     private int _score;
-    private List<SpawnObject> _spawnObjects;
+    [SerializeField]private List<SpawnObject> _spawnObjects;
     
     private LoadScreen _loadScreen;
     private IObjectResolver _objectResolver;
@@ -65,7 +65,6 @@ public class MergeGameSystem : MonoBehaviour
     private void Start()
     {
         _levelSaver = _objectResolver.Resolve<LevelSaver>();
-        _spawnObjects = new List<SpawnObject>();
 
         var instObject = _objectResolver.Instantiate(_gameConfig.ObjectConfigs[0].Prefab, _spawnPosition);
         instObject.DeactivateObject();
@@ -80,7 +79,12 @@ public class MergeGameSystem : MonoBehaviour
         // lol, don't  do this 
         _onLsShow = () => SetActiveGame(false);
         _onLsHide = () => SetActiveGame(true);
-        
+
+        _loadScreen.AcceptButton.onClick.AddListener(() =>
+        {
+            foreach (var spawnObject in _spawnObjects)
+                spawnObject.ActivateObject();
+        });
         _loadScreen.OnLoadScreenShow += _onLsShow;
         _loadScreen.OnLoadScreenHide += _onLsHide;
     }
@@ -111,6 +115,12 @@ public class MergeGameSystem : MonoBehaviour
     {
         GameState.InputEnabled = active;
         _spawnObjectPositionComponent.SetInputActive(active);
+
+        if (active)
+        {
+            foreach (var spawnObject in _spawnObjects)
+                spawnObject.ActivateObject();
+        }
     }
 
     private void AddPoints(int p0)
@@ -183,23 +193,23 @@ public class MergeGameSystem : MonoBehaviour
         SetActiveGame(true);
     }
 
-    public void SetLoadData(List<ObjectConfig> spawnObjects, int currentScore)
+    public void SetLoadData(List<SpawnObjectData> spawnObjects, int currentScore)
     {
-        var spawnObjectToList = new List<SpawnObject>();
+        _spawnObjects = new List<SpawnObject>();
         
         _score = currentScore;
         _pointText.text = _score.ToString();
 
         foreach (var spawnObject in spawnObjects)
         {
-            SpawnObject pref = _gameConfig.ObjectConfigs[(int)spawnObject.ObjectType].Prefab;
-            pref.SetConfig(_gameConfig.ObjectConfigs[(int)spawnObject.ObjectType]);
-            
-            SpawnObject obj = _objectResolver.Instantiate(pref, _objectsHolder);
-            obj.SetSavedPosition();
-            spawnObjectToList.Add(obj);
+            var config = _gameConfig.ObjectConfigs[(int)spawnObject.ObjectType];
+            var obj = _objectResolver.Instantiate(config.Prefab, _objectsHolder);
+            obj.transform.position = new Vector3(spawnObject.X, spawnObject.Y, spawnObject.Z);
+            obj.SetConfig(config);
+            obj.DeactivateObject();
+    
+            _spawnObjects.Add(obj);
         }
-        
-        _spawnObjects = spawnObjectToList;
+
     }
 }
